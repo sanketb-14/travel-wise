@@ -1,7 +1,9 @@
 
 import { NavLink } from 'react-router-dom';
 import backImg from '../assets/back.svg'
+import { useAuth } from "../contexts/AuthContext";
 export default function Home() {
+  const {isAuthenticated} = useAuth()
   return (
     <div
       className="hero min-h-screen"
@@ -23,7 +25,7 @@ export default function Home() {
             of.Never forget your wonderful experiences, and show your friends
             how you have wandered the world
           </p>
-          <NavLink to="/app">
+          <NavLink to={isAuthenticated ? "/app" : "/login"}>
             <button className="btn btn-primary">Start Tracking Journey</button>
           </NavLink>
         </div>

@@ -1,8 +1,10 @@
 import {NavLink} from 'react-router-dom'
-import {Logo} from './index'
+import {Logo, User} from './index'
 import SwitchTheme from './SwitchTHeme';
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbar() {
+  const { isAuthenticated } = useAuth();
   return (
     <nav className="navbar navbar-start w-full flex justify-between bg-base-300 rounded-md shadow-xl">
       <div className="flex justify-center w-1/3 ml-4 text-primary ">
@@ -21,7 +23,7 @@ export default function Navbar() {
           <NavLink to="/pricing">pricing</NavLink>
         </li>
         <li className=" ml-8 btn btn-sm btn-secondary active:btn-secondary hover:btn-secondary m-1 ">
-          <NavLink to="/login">Login</NavLink>
+          {isAuthenticated ? <User/> :<NavLink to="/login">login</NavLink> }
         </li>
       </ul>
     </nav>
